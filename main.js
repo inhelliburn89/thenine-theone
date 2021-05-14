@@ -64,9 +64,9 @@ class Background2{
 const nazgulImgs = [
     "/Game images/nazgul1 png.png",
     "/Game images/nazgul2 png.png",
-    "/Game images/drake1.png",
-    "/Game images/drake2.png",
-    "/Game images/drake3.png"
+    "/Game images/Flygul1.png",
+    "/Game images/Flygul2.png"
+    
 ]
 
 
@@ -92,32 +92,34 @@ class Nazgul {
         this.image3.src = imgs[2];
         this.image4 = new Image();
         this.image4.src = imgs[3];
-        this.image5 = new Image();
-        this.image5.src = imgs[4];
+        
 
         this.image6 = this.image3
         
     }
 
     draw(){
-        if(this.y <= 400) 
+        if(this.y >= 280){
         if(frames % 20 === 0){
-            if(this.height <= 280){
+  
             if(this.image === this.image1){
                 this.image = this.image2
             }else {
                 this.image = this.image1
             }
-        }}if (this.height <= 281){
-            if(this.image6 === this.image3){
-                this.image6 = this.image4
-            }if(this.image6 === this.image4 ){
-                this.image6 = this.image5
+        }}
+        
+        if (this.y <= 281){
+            if(frames % 20 === 0){
+            if(this.image === this.image3){
+                this.image = this.image4
+            
 
             }else {
-                this.image6 = this.image3
+                this.image = this.image3
             }
-        }
+        }}
+        //setting map limits
         if(this.y <= 40){
             this.userPull= 40
             this.y = 50
@@ -159,7 +161,7 @@ class Soldier{
     }
 
     draw(){
-        if(frames % 10 ) this.x -= 3;
+        if(frames % 20 ) this.x -= 3;
 
 
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
@@ -178,7 +180,7 @@ class Archer{
     }
 
     draw(){
-        if(frames % 10 ) this.x -= 3;
+        if(frames % 20 ) this.x -= 3;
 
         if(this.x <= 50){
             this.userPull= 50
@@ -209,7 +211,7 @@ class Horseman{
     }
 
     draw(){
-        if(frames % 10 ) this.x -= 3;
+        if(frames % 15 ) this.x -= 3;
 
         if(this.x <= 50){
             this.userPull= 50
@@ -240,7 +242,7 @@ class Eagle{
     }
 
     draw(){
-        if(frames % 10 ) this.x -= 3;
+        if(frames % 20 ) this.x -= 3;
 
         if(this.x <= 50){
             this.userPull= 50
@@ -268,11 +270,14 @@ function generateEnemies(){
 
         let x = Math.floor(Math.random() * canvas.width - 800 )
         
-       //
-        const enemy = new Eagle(widthRan, x)
-        
+        const enemy = new Soldier(widthRan, x)
+        const enemy2 = new Archer(widthRan, x)
+        const enemy3 = new Horseman(widthRan, x)
+        const enemy4 = new Eagle(widthRan, x)
+
+        let army = [enemy,enemy2,enemy3,enemy4]
     
-        enemies = [...enemies,enemy]
+        enemies = [...enemies,army[Math.floor(Math.random()*army.length)]]
     }
 }
 
