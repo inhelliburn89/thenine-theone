@@ -1,3 +1,7 @@
+//intro section
+
+
+//canvas design
 const canvas = document.getElementById("mycanvas");
 const ctx = canvas.getContext("2d");
 const button = document.querySelector("button");
@@ -7,6 +11,15 @@ let soldiers = [];
 let points = 0;
 let requestId;
 
+
+//
+
+//audio
+const audio = new Audio();
+audio.src = "/Game images/The-Morgul.mp3"
+audio.loop = true
+
+//background classes
 class Background {
     constructor(){
         this.x = 0;
@@ -23,11 +36,7 @@ class Background {
         ctx.fillText("Frodo destroyed the ring, Sauron is over!",200,200)
     }
 
-    newGame(){
-        ctx.font ="30px Arial" 
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("Press enter for a new game",200,200)
-    }
+
 
     draw (){
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
@@ -69,7 +78,53 @@ const nazgulImgs = [
     
 ]
 
+//timer
+class Time {
+    
+        constructor(){
+            this.x = 0;
+            this.y = 0;
+            this.width = canvas.width;
+            this.height = canvas.height;
+            this.image = new Image();
+            this.image.src = "/Game images/TimeBar.png"
 
+
+        }
+
+    draw(){
+        this.x ++;
+        if(this.x > -canvas.width) this.x = 600;
+        ctx.drawImage(this.image,500,-50,400,200)
+
+    }
+
+}
+
+
+class Frodo{
+    constructor(){
+        this.x = 515;
+        this.y = 5;
+        this.width = 70;
+        this.height = 80;
+        //imagen
+        this.image = new Image();
+        this.image.src = "/Game images/Frody.png";
+    }
+
+    draw(){
+        if(frames % 5 ) this.x += 0.1;
+        if(this.x >= 805){
+            gameOver()
+
+    }
+
+        ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
+    }
+}
+
+//heroes and enemies
 
 class Nazgul {
     constructor(x,y,w,h,imgs){
@@ -182,19 +237,6 @@ class Archer{
     draw(){
         if(frames % 20 ) this.x -= 3;
 
-        if(this.x <= 50){
-            this.userPull= 50
-            this.x = 65
-            
-        }
-
-        if(this.y <= 50){
-            this.userPull= 50
-            this.y = 60
-            
-        }
-
-
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
     }
 }
@@ -212,18 +254,6 @@ class Horseman{
 
     draw(){
         if(frames % 15 ) this.x -= 3;
-
-        if(this.x <= 50){
-            this.userPull= 50
-            this.x = 65
-            
-        }
-
-        if(this.y <= 50){
-            this.userPull= 50
-            this.y = 60
-            
-        }
 
 
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
@@ -244,19 +274,6 @@ class Eagle{
     draw(){
         if(frames % 20 ) this.x -= 3;
 
-        if(this.x <= 50){
-            this.userPull= 50
-            this.x = 65
-            
-        }
-
-        if(this.y <= 50){
-            this.userPull= 50
-            this.y = 60
-            
-        }
-
-
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
     }
 }
@@ -275,9 +292,10 @@ function generateEnemies(){
         const enemy3 = new Horseman(widthRan, x)
         const enemy4 = new Eagle(widthRan, x)
 
-        let army = [enemy,enemy2,enemy3,enemy4]
+        let army = [enemy,enemy2,enemy3,enemy4]//generamos arreglo para los 4 enemigos
     
-        enemies = [...enemies,army[Math.floor(Math.random()*army.length)]]
+        enemies = [...enemies,army[Math.floor(Math.random()*army.length)]] //generamos los enemigos aleatoriamente en posicion, sino , 
+                                                                           //todos salen en la misma posicion al mismo tiempo
     }
 }
 
@@ -286,6 +304,10 @@ function generateEnemies(){
 function drawEnemies(){
     enemies.forEach((enemy,index_enemy)=>{
         enemy.draw()
+
+        if(enemy.x+enemy.width <= 70){
+            return enemies.splice(index_enemy,1)
+        }
         
     if(kingWitch.collision(enemy)){
             console.log("Touched")
@@ -297,7 +319,7 @@ function drawEnemies(){
         if(fire.collision(enemy)){
             enemies.splice(index_enemy,1)
             theFire.splice(index_fire,1)
-            points += 25 //puntaje por muerte
+            points += 1 //puntaje por muerte
 
         }
         if(fire.x+fire.width > canvas.width){
@@ -351,42 +373,53 @@ class Fire{
    // }
 }
 
+
+
 //classes
 
 const background = new Background();
 const backgroundField = new Background2();
-const kingWitch = new Nazgul(50,386,90,90,nazgulImgs)
+const kingWitch = new Nazgul(50,386,90,90,nazgulImgs);
+const time = new Time();
+const hobbit = new Frodo();
 
 
 function startGame(){
     button.disabled = true
     requestId = requestAnimationFrame(update)
-    //audio.play()
+    audio.play()
 }
 
 function gameOver(){
+    audio.pause()
+    button.disabled = false;
+    button.onclick = resetGame
     background.gameOver()
     requestId = undefined
 }
 
-function newGame(){//no inicia desde 0
-    background.newGame()
-    requestId = requestAnimationFrame(update)
+function resetGame (){
+    audio.currentTime= 0
+    
+    startGame()
 }
 
 function update(){
     frames++;
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    
+    ctx.fillStyle = "FFFFFF";
     background.draw()
     backgroundField.draw()
     kingWitch.draw() 
+    
+    time.draw()
     generateEnemies()
     drawEnemies()
+    hobbit.draw()
 
     ctx.font = "30px Arial"
     ctx.fillText(points, 120,50)//score
-    ctx.fillStyle = "FFFFFF";
+    
 
     if(requestId){
         requestId = requestAnimationFrame(update)
@@ -411,9 +444,6 @@ addEventListener("keydown", (event)=>{
         kingWitch.y += 50
     }
 
-    if(event.keyCode === 13){
-        startGame()     
-    }
 
     if(event.keyCode === 32){
         generateFire()
