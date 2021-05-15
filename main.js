@@ -16,8 +16,18 @@ let requestId;
 
 //audio
 const audio = new Audio();
-audio.src = "/Game images/The-Morgul.mp3"
+audio.src = "/Music/The-Morgul.mp3"
 audio.loop = true
+
+const audio2 = new Audio();
+audio2.src = "/Music/thunder.mp3"
+audio2.loop = true
+
+const audio3 = new Audio();
+audio3.src = "/Music/Ring song.mp3"
+audio3.loop = true
+
+
 
 //background classes
 class Background {
@@ -31,14 +41,27 @@ class Background {
     }
 
     gameOver(){
-        ctx.font ="30px Arial" 
+        ctx.font ="30px Lucida Blackletter" 
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText("Frodo destroyed the ring, Sauron is over!",200,200)
+        ctx.fillText("Refresh to play again!",300,250)
+        
     }
 
+    winGame(){
+        ctx.font ="30px Arial" 
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("The witch king has the ring",260,200)
+        ctx.fillText("Sauron is back,",335,250)
+        ctx.fillText("mankind is over!!",325,300)
+        ctx.fillText("Refresh to play again!",300,350)
 
+    }
 
     draw (){
+        ctx.font = "30px Arial"
+        ctx.fillText(points, 120,50)//score
+        ctx.fillStyle = "#FFFFFF"
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
         
         
@@ -320,7 +343,9 @@ function drawEnemies(){
             enemies.splice(index_enemy,1)
             theFire.splice(index_fire,1)
             points += 1 //puntaje por muerte
-
+        }
+        if (points >= 1){
+            winGame()
         }
         if(fire.x+fire.width > canvas.width){
             theFire.splice(index_fire,1)
@@ -388,10 +413,14 @@ function startGame(){
     button.disabled = true
     requestId = requestAnimationFrame(update)
     audio.play()
+    
 }
 
 function gameOver(){
     audio.pause()
+    
+    audio2.play()
+    
     button.disabled = false;
     button.onclick = resetGame
     background.gameOver()
@@ -400,10 +429,18 @@ function gameOver(){
 
 function resetGame (){
     audio.currentTime= 0
-    
+    audio2.pause()
     startGame()
 }
 
+function winGame(){
+    audio.pause()
+    audio3.play()
+    button.onclick = resetGame
+    background.winGame()
+    requestId = undefined
+
+}
 function update(){
     frames++;
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -418,6 +455,7 @@ function update(){
     hobbit.draw()
 
     ctx.font = "30px Arial"
+    ctx.fillStyle = "FFFFFF";
     ctx.fillText(points, 120,50)//score
     
 
