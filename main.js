@@ -1,5 +1,31 @@
 //intro section
+const splash = document.querySelector('.splash');
+document.addEventListener('DOMContentLoaded', (event)=>{
+    setTimeout(()=>{
+        splash.classList.add('display-none');
+    }, 4000);
+})
 
+//char selection
+
+const charSelect = document.querySelector('.charselect');
+document.addEventListener('DOMContentLoaded', (event)=>{
+    setTimeout(()=>{
+        charSelect.classList.add('display-none');
+    }, 8000);
+})
+
+function nazgul() {
+    document.getElementById("character-box").style.backgroundImage = "url('http://vignette2.wikia.nocookie.net/simpsons/images/7/75/Mario.png/revision/latest?cb=20100202173945')";
+     var audio = document.getElementById("nazgul-audio");
+     audio.play();
+  }
+  
+  function gandalf() {
+    document.getElementById("character-box").style.backgroundImage = "url('http://vignette1.wikia.nocookie.net/draconis-realm/images/0/01/Iskenderun1.png/revision/latest?cb=20150720171935')";
+    var audio = document.getElementById("gandalf-audio");
+     audio.play();
+  }
 
 //canvas design
 const canvas = document.getElementById("mycanvas");
@@ -29,7 +55,7 @@ audio3.loop = true
 
 
 
-//background classes
+//background classes mordor
 class Background {
     constructor(){
         this.x = 0;
@@ -147,7 +173,7 @@ class Frodo{
     }
 }
 
-//heroes and enemies
+//nazgul and enemies
 
 class Nazgul {
     constructor(x,y,w,h,imgs){
