@@ -42,34 +42,34 @@ let requestId;
 
 //audio
 const audio = new Audio();
-audio.src = "/Music/The-Morgul.mp3"
+audio.src = "/Music/Rhorirrim.mp3"
 audio.loop = true
 
 const audio2 = new Audio();
-audio2.src = "/Music/thunder.mp3"
+audio2.src = "/Music/Ring song.mp3"
 audio2.loop = true
 
 const audio3 = new Audio();
-audio3.src = "/Music/Ring song.mp3"
+audio3.src = "/Music/gondor wins.mp3"
 audio3.loop = true
 
 
 
 //background classes mordor
-class Background {
+class Gondor {
     constructor(){
         this.x = 0;
         this.y = 0;
         this.width = canvas.width;
         this.height = canvas.height;
         this.image = new Image ()
-        this.image.src = "/Game images/black_gate.jpeg"
+        this.image.src = "/Game images/gondor1.jpg"
     }
 
     gameOver(){
         ctx.font ="30px Lucida Blackletter" 
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("Frodo destroyed the ring, Sauron is over!",200,200)
+        ctx.fillText("The witch king has the ring, Sauron is back!",200,200)
         ctx.fillText("Refresh to play again!",300,250)
         
     }
@@ -77,9 +77,9 @@ class Background {
     winGame(){
         ctx.font ="30px Lucida Blackletter" 
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("The witch king has the ring",260,200)
-        ctx.fillText("Sauron is back,",335,250)
-        ctx.fillText("mankind is over!!",325,300)
+        ctx.fillText("Frodo destroyed the ring,",260,200)
+        ctx.fillText("Sauron is over,",335,250)
+        ctx.fillText("mankind is saved!",325,300)
         ctx.fillText("Refresh to play again!",300,350)
 
     }
@@ -94,14 +94,14 @@ class Background {
     }
 }
 
-class Background2{
+class Gondor2{
     constructor(){
         this.x = 0;
         this.y = 0;
         this.width = canvas.width;
         this.height = canvas.height;
         this.image = new Image();
-        this.image.src = "/Game images/black_gate ground.jpeg"
+        this.image.src = "/Game images/gondorbattlefield.jpg"
     }
 
     draw(){
@@ -120,10 +120,10 @@ class Background2{
 };
 //nazgul images
 const nazgulImgs = [
-    "/Game images/nazgul1 png.png",
-    "/Game images/nazgul2 png.png",
-    "/Game images/Flygul1.png",
-    "/Game images/Flygul2.png"
+    "/Game images/Gandalf-fade.png",
+    "/Game images/Gandalf-fade.png",
+    "/Game images/eagle1.png",
+    "/Game images/eagle2.png"
     
 ]
 
@@ -175,7 +175,7 @@ class Frodo{
 
 //nazgul and enemies
 
-class Nazgul {
+class Gandalf {
     constructor(x,y,w,h,imgs){
         this.x = x;
         this.y = y;
@@ -261,7 +261,7 @@ class Soldier{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/soldat.png";
+        this.image.src = "/Game images/orc.png";
     }
 
     draw(){
@@ -280,7 +280,7 @@ class Archer{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/archer.png";
+        this.image.src = "/Game images/orcArcher.png";
     }
 
     draw(){
@@ -298,7 +298,7 @@ class Horseman{
         this.height = 95;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/horseman.png";
+        this.image.src = "/Game images/thetroll.png";
     }
 
     draw(){
@@ -317,7 +317,7 @@ class Eagle{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/eagle.png";
+        this.image.src = "/Game images/flyingorc.png";
     }
 
     draw(){
@@ -396,7 +396,7 @@ class Fire{
         this.width = 30
         this.height = 30
         this.image = new Image()
-        this.image.src = "/Game images/fire.png"
+        this.image.src = "/Game images/bluefire.png"
     }
 
     draw(){
@@ -428,9 +428,9 @@ class Fire{
 
 //classes
 
-const background = new Background();
-const backgroundField = new Background2();
-const whitemage = new Nazgul(50,386,90,90,nazgulImgs);
+const background = new Gondor();
+const backgroundField = new Gondor2();
+const whitemage = new Gandalf(50,386,90,90,nazgulImgs);
 const time = new Time();
 const hobbit = new Frodo();
 
