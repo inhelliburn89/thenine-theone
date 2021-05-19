@@ -2,17 +2,8 @@
 //canvas design
 const canvas = document.getElementById("mycanvas");
 const ctx = canvas.getContext("2d");
-//const button = document.querySelector("button");
+const button = document.getElementById("btn");
 
-window.addEventListener('resize', resizeCanvas, false);
-    
-    function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            
-            drawStuff(); 
-    }
 let frames = 0;
 let soldiers = [];
 let points = 0;
@@ -23,34 +14,34 @@ let requestId;
 
 //audio
 const audio = new Audio();
-audio.src = typeGame.audio//"./music/theMorgul.mp3"
+audio.src = "./music/rhorirrim.mp3"
 audio.loop = true
 
 const audio2 = new Audio();
-audio2.src = "./music/thunder.mp3"
+audio2.src = "./music/ringSong.mp3"
 audio2.loop = true
 
 const audio3 = new Audio();
-audio3.src = "./music/ringSong.mp3"
+audio3.src = "./music/gondorWins.mp3"
 audio3.loop = true
 
 
 
 //background classes mordor
-class Background {
+class Gondor {
     constructor(){
         this.x = 0;
         this.y = 0;
         this.width = canvas.width;
         this.height = canvas.height;
         this.image = new Image ()
-        this.image.src = "./gameImages/black_gate.jpeg"
+        this.image.src = "./gameImages/gondor1.jpg"
     }
 
     gameOver(){
         ctx.font ="50px Tangerine" 
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("Frodo destroyed the ring, Sauron is over!",200,200)
+        ctx.fillText("The witch king has the ring, Sauron is back!",200,200)
         ctx.fillText("Refresh to play again!",300,250)
         
     }
@@ -58,9 +49,9 @@ class Background {
     winGame(){
         ctx.font ="50px Tangerine" 
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("The witch king has the ring",260,200)
-        ctx.fillText("Sauron is back,",335,250)
-        ctx.fillText("mankind is over!!",325,300)
+        ctx.fillText("Frodo destroyed the ring,",260,200)
+        ctx.fillText("Sauron is over,",335,250)
+        ctx.fillText("mankind is saved!",325,300)
         ctx.fillText("Refresh to play again!",300,350)
 
     }
@@ -75,14 +66,14 @@ class Background {
     }
 }
 
-class Background2{
+class Gondor2{
     constructor(){
         this.x = 0;
         this.y = 0;
         this.width = canvas.width;
         this.height = canvas.height;
         this.image = new Image();
-        this.image.src = "./gameImages/black_gate ground.jpeg"
+        this.image.src = "./gameImages/gondorbattlefield.jpg"
     }
 
     draw(){
@@ -101,10 +92,10 @@ class Background2{
 };
 //nazgul images
 const nazgulImgs = [
-    "./gameImages/nazgul1 png.png",
-    "./gameImages/nazgul2 png.png",
-    "./gameImages/Flygul1.png",
-    "./gameImages/Flygul2.png"
+    "./gameImages/Gandalf-fade.png",
+    "./gameImages/Gandalf-fade.png",
+    "./gameImages/eagle1.png",
+    "./gameImages/eagle2.png"
     
 ]
 
@@ -156,7 +147,7 @@ class Frodo{
 
 //nazgul and enemies
 
-class Nazgul {
+class Gandalf {
     constructor(x,y,w,h,imgs){
         this.x = x;
         this.y = y;
@@ -242,7 +233,7 @@ class Soldier{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "./gameImages/soldat.png";
+        this.image.src = "./gameImages/orc.png";
     }
 
     draw(){
@@ -261,7 +252,7 @@ class Archer{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "./gameImages/archer.png";
+        this.image.src = "./gameImages/orcArcher.png";
     }
 
     draw(){
@@ -279,7 +270,7 @@ class Horseman{
         this.height = 95;
         //imagen
         this.image = new Image();
-        this.image.src = "./gameImages/horseman.png";
+        this.image.src = "./gameImages/thetroll.png";
     }
 
     draw(){
@@ -298,7 +289,7 @@ class Eagle{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "./gameImages/eagle.png";
+        this.image.src = "./gameImages/flyingorc.png";
     }
 
     draw(){
@@ -377,7 +368,7 @@ class Fire{
         this.width = 30
         this.height = 30
         this.image = new Image()
-        this.image.src = "./gameImages/fire.png"
+        this.image.src = "./gameImages/bluefire.png"
     }
 
     draw(){
@@ -409,15 +400,15 @@ class Fire{
 
 //classes
 
-const background = new Background();
-const backgroundField = new Background2();
-const whitemage = new Nazgul(50,386,90,90,nazgulImgs);
+const background = new Gondor();
+const backgroundField = new Gondor2();
+const whitemage = new Gandalf(50,386,90,90,nazgulImgs);
 const time = new Time();
 const hobbit = new Frodo();
 
 
 function startGame(){
-    button.disabled = true
+    button.disabled = true;
     requestId = requestAnimationFrame(update)
     audio.play()
     
@@ -472,11 +463,10 @@ function update(){
 }
 
 addEventListener("keydown", (event)=>{
-    //start
     if(event.keyCode === 13){
         startGame()
     }
-
+    
     //izq
     if(event.keyCode === 65){
         whitemage.x -= 40;
@@ -498,6 +488,8 @@ addEventListener("keydown", (event)=>{
     if(event.keyCode === 32){
         generateFire()
     }
+
+    
 })
 
-//button.onclick = startGame
+button.onclick = startGame

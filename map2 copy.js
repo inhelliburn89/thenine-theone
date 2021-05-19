@@ -1,36 +1,8 @@
-//intro section
-const splash = document.querySelector('.splash');
-document.addEventListener('DOMContentLoaded', (event)=>{
-    setTimeout(()=>{
-        splash.classList.add('display-none');
-    }, 4000);
-})
-
-//char selection
-
-const charSelect = document.querySelector('.charselect');
-document.addEventListener('DOMContentLoaded', (event)=>{
-    setTimeout(()=>{
-        charSelect.classList.add('display-none');
-    }, 8000);
-})
-
-function nazgul() {
-    document.getElementById("character-box").style.backgroundImage = "url('http://vignette2.wikia.nocookie.net/simpsons/images/7/75/Mario.png/revision/latest?cb=20100202173945')";
-     var audio = document.getElementById("nazgul-audio");
-     audio.play();
-  }
-  
-  function gandalf() {
-    document.getElementById("character-box").style.backgroundImage = "url('http://vignette1.wikia.nocookie.net/draconis-realm/images/0/01/Iskenderun1.png/revision/latest?cb=20150720171935')";
-    var audio = document.getElementById("gandalf-audio");
-     audio.play();
-  }
 
 //canvas design
 const canvas = document.getElementById("mycanvas");
 const ctx = canvas.getContext("2d");
-const button = document.querySelector("button");
+const button = document.getElementById("btn");
 
 let frames = 0;
 let soldiers = [];
@@ -42,15 +14,15 @@ let requestId;
 
 //audio
 const audio = new Audio();
-audio.src = "/Music/Rhorirrim.mp3"
+audio.src = typeGame.audio
 audio.loop = true
 
 const audio2 = new Audio();
-audio2.src = "/Music/Ring song.mp3"
+audio2.src = typeGame.audio2
 audio2.loop = true
 
 const audio3 = new Audio();
-audio3.src = "/Music/gondor wins.mp3"
+audio3.src = typeGame.audio3
 audio3.loop = true
 
 
@@ -63,29 +35,29 @@ class Gondor {
         this.width = canvas.width;
         this.height = canvas.height;
         this.image = new Image ()
-        this.image.src = "/Game images/gondor1.jpg"
+        this.image.src = typeGame.background
     }
 
     gameOver(){
-        ctx.font ="30px Lucida Blackletter" 
+        ctx.font ="50px Tangerine" 
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("The witch king has the ring, Sauron is back!",200,200)
+        ctx.fillText(typeGame.gameOverText,200,200)
         ctx.fillText("Refresh to play again!",300,250)
         
     }
 
     winGame(){
-        ctx.font ="30px Lucida Blackletter" 
+        ctx.font ="50px Tangerine" 
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("Frodo destroyed the ring,",260,200)
-        ctx.fillText("Sauron is over,",335,250)
-        ctx.fillText("mankind is saved!",325,300)
-        ctx.fillText("Refresh to play again!",300,350)
+        ctx.fillText(typeGame.winGame1,260,200)
+        ctx.fillText(typeGame.winGame2,335,250)
+        ctx.fillText(typeGame.winGame3,325,300)
+        ctx.fillText(typeGame.winGame4,300,350)
 
     }
 
     draw (){
-        ctx.font = "30px Lucida Blackletter"
+        ctx.font = "50px Tangerine"
         ctx.fillText(points, 120,50)//score
         ctx.fillStyle = "#FFFFFF"
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
@@ -101,7 +73,7 @@ class Gondor2{
         this.width = canvas.width;
         this.height = canvas.height;
         this.image = new Image();
-        this.image.src = "/Game images/gondorbattlefield.jpg"
+        this.image.src = typeGame.background2
     }
 
     draw(){
@@ -119,13 +91,7 @@ class Gondor2{
     }
 };
 //nazgul images
-const nazgulImgs = [
-    "/Game images/Gandalf-fade.png",
-    "/Game images/Gandalf-fade.png",
-    "/Game images/eagle1.png",
-    "/Game images/eagle2.png"
-    
-]
+
 
 //timer
 class Time {
@@ -136,7 +102,7 @@ class Time {
             this.width = canvas.width;
             this.height = canvas.height;
             this.image = new Image();
-            this.image.src = "/Game images/TimeBar.png"
+            this.image.src = "./gameImages/TimeBar.png"
 
 
         }
@@ -159,7 +125,7 @@ class Frodo{
         this.height = 80;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/Frody.png";
+        this.image.src = "./gameImages/Frody.png";
     }
 
     draw(){
@@ -261,7 +227,7 @@ class Soldier{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/orc.png";
+        this.image.src = typeGame.soldat;
     }
 
     draw(){
@@ -280,7 +246,7 @@ class Archer{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/orcArcher.png";
+        this.image.src = typeGame.schutze;
     }
 
     draw(){
@@ -298,7 +264,7 @@ class Horseman{
         this.height = 95;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/thetroll.png";
+        this.image.src = typeGame.reiter;
     }
 
     draw(){
@@ -317,7 +283,7 @@ class Eagle{
         this.height = 65;
         //imagen
         this.image = new Image();
-        this.image.src = "/Game images/flyingorc.png";
+        this.image.src = typeGame.adler;
     }
 
     draw(){
@@ -396,7 +362,7 @@ class Fire{
         this.width = 30
         this.height = 30
         this.image = new Image()
-        this.image.src = "/Game images/bluefire.png"
+        this.image.src = typeGame.feuer;
     }
 
     draw(){
@@ -430,13 +396,13 @@ class Fire{
 
 const background = new Gondor();
 const backgroundField = new Gondor2();
-const whitemage = new Gandalf(50,386,90,90,nazgulImgs);
+const whitemage = new Gandalf(50,386,90,90,typeGame.mainChar);
 const time = new Time();
 const hobbit = new Frodo();
 
 
 function startGame(){
-    button.disabled = true
+    button.disabled = true;
     requestId = requestAnimationFrame(update)
     audio.play()
     
@@ -480,7 +446,7 @@ function update(){
     drawEnemies()
     hobbit.draw()
 
-    ctx.font = "30px Lucida Blackletter"
+    ctx.font = "50px Tangerine"
     ctx.fillStyle = "FFFFFF";
     ctx.fillText(points, 120,50)//score
     
@@ -491,6 +457,10 @@ function update(){
 }
 
 addEventListener("keydown", (event)=>{
+    if(event.keyCode === 13){
+        startGame()
+    }
+    
     //izq
     if(event.keyCode === 65){
         whitemage.x -= 40;
@@ -512,6 +482,8 @@ addEventListener("keydown", (event)=>{
     if(event.keyCode === 32){
         generateFire()
     }
+
+    
 })
 
 button.onclick = startGame
