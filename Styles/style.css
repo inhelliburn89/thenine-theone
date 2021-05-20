@@ -15,7 +15,9 @@ body {
 }
 
 .body {
-  background-color: black;
+  background-image: url("/gameImages/startGame.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 canvas { 
@@ -58,7 +60,7 @@ height: 900px;
     font-size: 3em;
     color: white;
     width: 1400px;
-  height: 900px;
+  height: 800px;
     background-image: url("/gameImages/onering.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -74,7 +76,7 @@ height: 900px;
     font-size: 3em;
     color: white;
     width: 1400px;
-  height: 900px;
+  height: 800px;
     background-image: url("/gameImages/onering.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -115,10 +117,13 @@ h2 {
 
 }
 
+#character-box a {
+  text-decoration: none;
+}
 #character-container {
   padding: 10px;
   width: 1000px;
-  height: 1000px;
+  height: 700px;
   background-image: url("/gameImages/nazgulwallpaper.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -131,12 +136,13 @@ h3 {
   text-align: center;
   font-size: 2em;
   margin-left: -400px;
+  text-decoration: none;
 }
 
 #character-container img {
-  margin-left: 145px;
-  height: 300px;
-  width: 250px;
+  margin-left: 165px;
+  height: 260px;
+  width: 210px;
   border: 3px groove red;
   padding: 10px;
   
@@ -163,12 +169,12 @@ h3 {
 
 #btn {
   background: #222;
-  height: 50px;
-  min-width: 150px;
+  height: 1px;
+  min-width: 1px;
   border: none;
   border-radius: 10px;
   color: #eee;
-  font-size: 40px;
+  font-size: 1px;
   font-family: 'Tangerine', cursive;
   position: relative;
   transition: 3s;
@@ -177,12 +183,12 @@ h3 {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding-top: 5px;
+  padding-top: 1px;
 }
 
 #btn #circle {
-  width: 5px;
-  height: 5px;
+  width: 1px;
+  height: 1px;
   background: transparent;
   border-radius: 50%;
   position: absolute;
@@ -206,8 +212,8 @@ h3 {
 }
 
 #btn:hover #circle {
-  height: 50px;
-  width: 150px;
+  height: 1px;
+  width: 1px;
   left: 0;
   border-radius: 0;
   border-bottom: 2px solid #eee;

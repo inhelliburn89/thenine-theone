@@ -1,4 +1,18 @@
+const splash = document.querySelector('.splash');
+document.addEventListener('DOMContentLoaded', (event)=>{
+    setTimeout(()=>{
+        splash.classList.add('display-none');
+    }, 4000);
+})
 
+
+function gandalf() {
+    
+    
+
+    var audio = document.getElementById("gandalf-audio");
+     audio.play();
+}
 //canvas design
 const canvas = document.getElementById("mycanvas");
 const ctx = canvas.getContext("2d");
@@ -342,7 +356,7 @@ function drawEnemies(){
             theFire.splice(index_fire,1)
             points += 1 //puntaje por muerte
         }
-        if (points >= 1){
+        if (points >= 10){
             winGame()
         }
         if(fire.x+fire.width > canvas.width){
