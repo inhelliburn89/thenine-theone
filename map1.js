@@ -9,9 +9,16 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 function nazgul() {
     
     
-    
     var audio = document.getElementById("nazgul-audio");
     audio.play();
+
+    
+        setTimeout(function(){
+            window.location.href = "./game.html";
+           },4000);
+    
+    
+    
 }
 
 //canvas design
@@ -376,7 +383,7 @@ function drawEnemies(){
             theFire.splice(index_fire,1)
             points += 1 //puntaje por muerte
         }
-        if (points >= 10){
+        if (points >= 5){
             winGame()
         }
         if(fire.x+fire.width > canvas.width){
@@ -458,6 +465,7 @@ function gameOver(){
     button.onclick = resetGame
     background.gameOver()
     requestId = undefined
+    
 }
 
 function resetGame (){
@@ -525,7 +533,20 @@ addEventListener("keydown", (event)=>{
         generateFire()
     }
 
-    
+    if(event.keyCode === 74){
+        audio.pause()
+    }
+    if(event.keyCode === 75){
+        audio.play()
+    }
+
+    if(event.keyCode === 49){
+        gameOver()
+    }
+
+    if(event.keyCode === 50){
+        winGame()
+    }
 })
 
 button.onclick = startGame

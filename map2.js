@@ -49,7 +49,7 @@ class Gondor {
         this.width = canvas.width;
         this.height = canvas.height;
         this.image = new Image ()
-        this.image.src = "./gameImages/gondor1.jpg"
+        this.image.src = "./gameImages/gondorback.jpg"
     }
 
     gameOver(){
@@ -356,7 +356,7 @@ function drawEnemies(){
             theFire.splice(index_fire,1)
             points += 1 //puntaje por muerte
         }
-        if (points >= 10){
+        if (points >= 5){
             winGame()
         }
         if(fire.x+fire.width > canvas.width){
@@ -503,7 +503,22 @@ addEventListener("keydown", (event)=>{
         generateFire()
     }
 
-    
+    if(event.keyCode === 74){
+        audio.pause()
+    }
+    if(event.keyCode === 75){
+        audio.play()
+    }
+
+    if(event.keyCode === 49){
+        gameOver()
+        
+    }
+
+    if(event.keyCode === 50){
+        winGame()
+        
+    }
 })
 
 button.onclick = startGame
