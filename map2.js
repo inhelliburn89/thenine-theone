@@ -8,10 +8,14 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 
 function gandalf() {
     
-    
-
     var audio = document.getElementById("gandalf-audio");
-     audio.play();
+    audio.play();
+
+    
+    setTimeout(function(){
+        window.location = "./game2.html";
+       },5000);
+
 }
 //canvas design
 const canvas = document.getElementById("mycanvas");

@@ -13,12 +13,24 @@ function nazgul() {
     audio.play();
 
     
-        setTimeout(function(){
-            window.location.href = "./game.html";
-           },4000);
+    setTimeout(function(){
+        window.location = "./game.html";
+       },5000);
     
     
     
+}
+
+function gandalf() {
+    
+    var audio = document.getElementById("gandalf-audio");
+    audio.play();
+
+    
+    setTimeout(function(){
+        window.location = "./game2.html";
+       },5000);
+
 }
 
 //canvas design

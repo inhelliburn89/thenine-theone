@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/lucida-blackletter');
+@import url('https://fonts.cdnfonts.com/css/lucida-blackletter');
 
 @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
 
@@ -82,7 +82,7 @@ height: 900px;
     background-size: cover;
     z-index: -15;
     line-height: 80vh;
-    transition: all 0.5s;
+    transition: all 0.2s;
 
 }
 
@@ -94,7 +94,7 @@ height: 900px;
 
 .fade-in {
     opacity: 0;
-    animation: fadeIn 3s ease-in forwards;
+    animation: fadeIn 1s ease-in forwards;
 }
 
 h2 {
@@ -113,7 +113,7 @@ h2 {
 .charselect.display-none {
 
     z-index: -15;
-    transition: all 0.5s;
+    transition: all 0.2s;
 
 }
 
@@ -154,6 +154,9 @@ h3 {
   border-color: white;
   box-shadow: 0 0 5px blue;
 }
+a {
+  text-decoration: none;
+}
 
 .instruc {
     
@@ -187,26 +190,9 @@ h3 {
   padding-top: 1px;
 }
 
-#btn #circle {
-  width: 1px;
-  height: 1px;
-  background: transparent;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  overflow: hidden;
-  transition: 500ms;
-}
 
-.noselect {
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-}
+
+
 
 #btn:hover {
   background: transparent;
