@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 
 function nazgul() {
     
-    
+const audioNaz = new Audio();
+audioNaz.src = "./Music/noManCanKillMe.mp3"
+
     var audio = document.getElementById("nazgul-audio");
-    audio.play();
+    audioNaz.play();
 
     
     setTimeout(function(){
@@ -23,8 +25,11 @@ function nazgul() {
 
 function gandalf() {
     
+    const audioGan = new Audio();
+audioGan.src = "./Music/youShallNotPass.mp3"
+
     var audio = document.getElementById("gandalf-audio");
-    audio.play();
+    audioGan.play();
 
     
     setTimeout(function(){

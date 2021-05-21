@@ -8,8 +8,11 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 
 function gandalf() {
     
+    const audioGan = new Audio();
+audioGan.src = "./Music/youShallNotPass.mp3"
+
     var audio = document.getElementById("gandalf-audio");
-    audio.play();
+    audioGan.play();
 
     
     setTimeout(function(){
