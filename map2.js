@@ -32,15 +32,15 @@ let requestId;
 
 //audio
 const audio = new Audio();
-audio.src = "./music/rhorirrim.mp3"
+audio.src = "./Music/Rhorirrim.mp3"
 audio.loop = true
 
 const audio2 = new Audio();
-audio2.src = "./music/ringSong.mp3"
+audio2.src = "./Music/ringSong.mp3"
 audio2.loop = true
 
 const audio3 = new Audio();
-audio3.src = "./music/gondorWins.mp3"
+audio3.src = "./Music/gondorWins.mp3"
 audio3.loop = true
 
 
